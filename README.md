@@ -238,3 +238,11 @@ Through this project, we learned how to apply machine learning models to a real-
 * [Dimensionality Reduction Techniques for Categorical and Continuous Data](https://medium.com/codex/dimensionality-reduction-techniques-for-categorical-continuous-data-75d2bca53100) </br>
 * [Regression Model Evaluation Metrics](https://velog.io/@ljs7463/%ED%9A%8C%EA%B7%80%EB%AA%A8%EB%8D%B8-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9Cevaluation-metrics) </br>
 * [One-Hot Encoding: pd.get_dummies vs OneHotEncoder](https://coduking.tistory.com/entry/%EC%9B%90-%ED%95%AB-%EC%9D%B8%EC%BD%94%EB%94%A9-pdgetdummies-vs-OneHotEncoder) </br>
+* [Additional Reference Site 1](https://static.vecteezy.com/system/resources/previews/034/908/550/non_2x/software-architecture-line-icon-illustration-vector.jpg) </br>
+* [Additional Reference Site 2](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dIOXIQKtRejMkbE9DEYGd4trRUCXcyRrulSI_uO9I2rvi4LDaVA724d-BeNipJq9GOU&usqp=CAU) </br>
+* [Additional Reference Site 3](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_6ZO29yw6XC_Cs14GToX3OlbMfDPBdzG38V19M_n0g6mR56FllJiplCPaoyEPEvuiFJs&usqp=CAU) </br>
+* [Additional Reference Site 4](https://www.shareicon.net/download/2015/09/25/107141_network.svg) </br>
+* [Additional Reference Site 5](https://m.blog.naver.com/youji4ever/221712578078) </br>
+* [Additional Reference Site 6](https://dlearner.tistory.com/20) </br>
+* [Additional Reference Site 7](https://gmnam.tistory.com/302) </br>
+* [Additional Reference Site 8](https://wikibook.co.kr/ml-definitive-guide/) </br>
