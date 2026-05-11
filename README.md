@@ -45,9 +45,8 @@ This project allowed us to apply a practical data science workflow, including da
 - `Item_Identifier` and `Outlet_Identifier` were excluded because they are unique identification numbers and do not directly contribute to the prediction task. </br>
 
 - Non-numerical columns were encoded for visualization and analysis: </br>
-  - Ordinal Encoding: `Item_Fat_Content` </br>
+  - Ordinal Encoding: `Item_Fat_Content`, `Outlet_Location_Type`, `Outlet_Size` </br>
   - Label Encoding: `Item_Type` </br>
-  - Ordinal Encoding: `Outlet_Location_Type`, `Outlet_Size` </br>
   - One-Hot Encoding: `Outlet_Type` </br>
 
 - Histograms were generated to visualize feature distributions. </br>
