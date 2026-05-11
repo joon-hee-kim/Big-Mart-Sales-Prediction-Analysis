@@ -13,18 +13,17 @@ This project allowed us to apply a practical data science workflow, including da
 ## 1. Business Objective </br>
 
 - Predict outlet-level product sales using multiple product and outlet features. </br>
-- Understand which features are important for predicting `Item_Outlet_Sales`. </br>
-- Apply an end-to-end data science workflow from data exploration to evaluation. </br>
-
-<!-- Add output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="750"> </br> -->
+- Analyze which product-level and outlet-level features are related to `Item_Outlet_Sales`. </br>
 
 ## 2. Data Exploration </br>
 
 - Loaded the Big Mart Sales Prediction dataset using `pd.read_csv()`. </br>
 - Printed the first five rows of the dataset using `df.head(5)`. </br>
+
 - Checked the dataset structure using `df.shape`, `df.index`, and `df.columns`. </br>
+
 - Generated statistical summaries using `df.describe()`. </br>
+
 - Checked feature names and data types using `df.dtypes`. </br>
 
 <!-- Add output image here if available -->
@@ -399,13 +398,6 @@ Through this project, we learned how to apply machine learning models to a real-
 201935025 Kim Sion </br>
 202035393 Ju Yongwan </br>
 202135759 Kim Hyunjeong </br>
-
-## 👥 Team Member's Role Division
-
-- Kim Joonhee: Data exploration, data description, histogram visualization, and PPT production </br>
-- Kim Sion: Data reduction and feature selection using correlation analysis and Random Forest </br>
-- Ju Yongwan: Data preprocessing, Item_Type reclassification, Label Encoding, One-Hot Encoding modification, validation after model learning, and GitHub cleanup </br>
-- Kim Hyunjeong: Data value changes, missing-value handling, data dropping, outlier removal, scaling, and encoding </br>
 
 ## ✔️ Source
 
