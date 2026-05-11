@@ -19,15 +19,14 @@ This project allowed us to apply a practical data science workflow, including da
 
 - Loaded the Big Mart Sales Prediction dataset using `pd.read_csv()`. </br>
 - Printed the first five rows of the dataset using `df.head(5)`. </br>
-
 - Checked the dataset structure using `df.shape`, `df.index`, and `df.columns`. </br>
+<img width="662" height="294" alt="image" src="https://github.com/user-attachments/assets/c8b5a225-1949-467a-a35f-ff7ef0683874" /> </br>
 
 - Generated statistical summaries using `df.describe()`. </br>
+<img width="426" height="228" alt="image" src="https://github.com/user-attachments/assets/456da2b5-a234-46a1-97b5-c2b6ad3e16be" /> </br>
 
 - Checked feature names and data types using `df.dtypes`. </br>
-
-<!-- Add output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="750"> </br> -->
+<img width="426" height="272" alt="image" src="https://github.com/user-attachments/assets/8f011470-4568-4d32-995a-019be5f61516" /> </br>
 
 - The dataset includes product-level and outlet-level features such as: </br>
   - `Item_Identifier` </br>
@@ -53,8 +52,7 @@ This project allowed us to apply a practical data science workflow, including da
 
 - Histograms were generated to visualize feature distributions. </br>
 
-<!-- Add histogram output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="850"> </br> -->
+<img width="810" height="430" alt="image" src="https://github.com/user-attachments/assets/bc348339-b7b4-442b-b873-97e26f5d12d6" /> </br>
 
 ## 3. Data Preprocessing </br>
 
@@ -62,12 +60,6 @@ This project allowed us to apply a practical data science workflow, including da
 
 - Filled missing values in `Item_Weight` with the mean value. </br>
 - Filled missing values in `Outlet_Size` with `Medium`. </br>
-
-```python
-df = df.fillna({'Item_Weight': df['Item_Weight'].mean()})
-df = df.fillna({'Outlet_Size': 'Medium'})
-
-```
 
 ### 3.2 Dropping Unnecessary Columns </br>
 
@@ -77,11 +69,6 @@ df = df.fillna({'Outlet_Size': 'Medium'})
   - `Item_Fat_Content` </br>
   - `Outlet_Identifier` </br>
   - `Outlet_Size` </br>
-
-```python
-drop_groups = ['Item_Identifier', 'Item_Fat_Content', 'Outlet_Identifier', 'Outlet_Size']
-df = df.drop(columns=drop_groups)
-```
 
 ### 3.3 Item Type Category Reduction </br>
 
@@ -95,28 +82,6 @@ df = df.drop(columns=drop_groups)
   - `Other foods` </br>
   - `Etc` </br>
 
-```python
-def get_category(type):
-  cat = ''
-  if type == "Fruits and Vegetables" and "Snack Foods":
-    cat = 'Desserts'
-  elif type == "Frozen Foods" or type == "Canned":
-    cat = 'Stored foods'
-  elif type == "Breads" or type == "Starchy Foods":
-    cat = 'Carbohydrates'
-  elif type == "Meat" or type == "Dairy":
-    cat = 'Fats'
-  elif type == "Soft Drinks" or type == "Hard Drinks":
-    cat = 'Drinks'
-  elif type == "Breakfast" or type == "Seafood":
-    cat = 'Other foods'
-  else:
-    cat = 'Etc'
-  return cat
-
-df['Item_Type'] = df['Item_Type'].apply(lambda x: get_category(x))
-```
-
 ### 3.4 One-Hot Encoding </br>
 
 - Applied One-Hot Encoding to the `Outlet_Type` column. </br>
@@ -125,20 +90,6 @@ df['Item_Type'] = df['Item_Type'].apply(lambda x: get_category(x))
   - `Outlet_Type_Supermarket Type1` </br>
   - `Outlet_Type_Supermarket Type2` </br>
   - `Outlet_Type_Supermarket Type3` </br>
-
-```python
-label = df['Outlet_Type']
-
-ohe = OneHotEncoder(sparse_output=False)
-outlet_type_encoded = ohe.fit_transform(label.values.reshape(-1, 1))
-outlet_type_encoded_df = pd.DataFrame(
-    outlet_type_encoded,
-    columns=ohe.get_feature_names_out(['Outlet_Type'])
-)
-
-df = pd.concat([df, outlet_type_encoded_df], axis=1)
-df = df.drop(columns=['Outlet_Type'])
-```
 
 ## 4. Outlier Detection and Removal </br>
 
@@ -149,41 +100,14 @@ df = df.drop(columns=['Outlet_Type'])
   - `Item_MRP` </br>
   - `Item_Outlet_Sales` </br>
 
-```python
-whis_value = 2.0
-
-plt.figure(figsize=(10, 7))
-for i, column in enumerate(
-    ['Item_Weight', 'Outlet_Establishment_Year', 'Item_MRP', 'Item_Outlet_Sales'], 1
-):
-    plt.subplot(2, 3, i)
-    sns.boxplot(df[column], whis=whis_value)
-    plt.title(column)
-
-plt.tight_layout()
-plt.show()
-```
-
 - Removed outliers from the `Item_Outlet_Sales` column using the Interquartile Range (IQR) method. </br>
 - After removing outliers, a boxplot was generated again to check the result. </br>
 
-```python
-column = 'Item_Outlet_Sales'
+#### Before Outlier Removal </br>
+<img width="664" height="463" alt="image" src="https://github.com/user-attachments/assets/b308d318-7b12-4db7-b1b1-608093988817" /> </br>
 
-Q1, Q3 = df[column].quantile(0.25), df[column].quantile(0.75)
-IQR = Q3 - Q1
-
-lower_bound = Q1 - whis_value * IQR
-upper_bound = Q3 + whis_value * IQR
-
-outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
-df.drop(outliers.index, inplace=True)
-
-print("Number of rows removed for Item_Outlet_Sales:", len(outliers))
-```
-
-<!-- Add boxplot output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="750"> </br> -->
+#### After Outlier Removal </br>
+<img width="244" height="244" alt="image" src="https://github.com/user-attachments/assets/f1cf6071-3dd1-4263-8502-bc5e6acac31c" /> </br>
 
 ## 5. Encoding and Scaling </br>
 
@@ -192,13 +116,11 @@ print("Number of rows removed for Item_Outlet_Sales:", len(outliers))
 - Applied Label Encoding to `Item_Type`. </br>
 - Applied Ordinal Encoding to `Outlet_Location_Type`. </br>
 
-```python
-le = LabelEncoder()
-df['Item_Type'] = le.fit_transform(df['Item_Type'])
+#### Before Label / Ordinal Encoding </br>
+<img width="594" height="272" alt="image" src="https://github.com/user-attachments/assets/c7ff3bfc-ba5e-42cd-af68-b87fd67e4259" /> </br>
 
-oe = OrdinalEncoder()
-df['Outlet_Location_Type'] = oe.fit_transform(df[['Outlet_Location_Type']])
-```
+#### After Label / Ordinal Encoding </br>
+<img width="372" height="271" alt="image" src="https://github.com/user-attachments/assets/e4e717a5-3797-4402-8073-8775de1e15ee" /> </br>
 
 ### 5.2 Scaling </br>
 
@@ -206,64 +128,21 @@ df['Outlet_Location_Type'] = oe.fit_transform(df[['Outlet_Location_Type']])
 - Applied MinMaxScaler to `Outlet_Establishment_Year`. </br>
 - Applied StandardScaler to `Item_MRP`. </br>
 
-```python
-df['Item_Weight'] = RobustScaler().fit_transform(df[['Item_Weight']])
-df['Outlet_Establishment_Year'] = MinMaxScaler().fit_transform(df[['Outlet_Establishment_Year']])
-df['Item_MRP'] = StandardScaler().fit_transform(df[['Item_MRP']])
-```
+#### Before Scaling </br>
+<img width="612" height="230" alt="image" src="https://github.com/user-attachments/assets/bd4ff134-2051-4c55-8237-055daf22f567" /> </br>
 
-<!-- Add scaling output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="850"> </br> -->
+#### After Scaling </br>
+<img width="454" height="240" alt="image" src="https://github.com/user-attachments/assets/5acc63bc-e7c3-465f-829d-e1935b333077" /> </br>
 
 ## 6. Feature Selection </br>
 
 - Separated the dataset into independent features and the dependent target variable. </br>
 - The target variable was `Item_Outlet_Sales`. </br>
-
-```python
-X = df[['Item_Weight', 'Item_Visibility', 'Item_Type', 'Item_MRP',
-        'Outlet_Establishment_Year', 'Outlet_Location_Type',
-        'Outlet_Type_Grocery Store', 'Outlet_Type_Supermarket Type1',
-        'Outlet_Type_Supermarket Type2', 'Outlet_Type_Supermarket Type3']]
-
-y = df['Item_Outlet_Sales']
-```
-
 - Visualized the correlation between features using a heatmap. </br>
 
-```python
-corr = df.corr()
-sns.heatmap(
-    corr,
-    vmin=-1,
-    vmax=1,
-    cmap='coolwarm',
-    annot=True,
-    fmt='.2f',
-    linewidths=0.1
-)
-plt.show()
-```
-
-<!-- Add heatmap image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="850"> </br> -->
+<img width="614" height="480" alt="image" src="https://github.com/user-attachments/assets/16a00fff-1891-49e5-a30e-b308e8b8fdf4" /> </br>
 
 - Used `RandomForestRegressor` to calculate feature importance. </br>
-
-```python
-model = RandomForestRegressor(random_state=1, max_depth=10)
-model.fit(X, y)
-
-features = X.columns
-importances = model.feature_importances_
-indices = np.argsort(importances)[-20:]
-
-plt.title('Feature Importances')
-plt.barh(range(len(indices)), importances[indices], align='center')
-plt.yticks(range(len(indices)), [features[i] for i in indices])
-plt.xlabel('Relative Importance')
-plt.show()
-```
 
 - The top important features identified from Random Forest feature importance were: </br>
   - `Item_MRP` </br>
@@ -271,72 +150,23 @@ plt.show()
   - `Outlet_Type_Supermarket Type3` </br>
   - `Item_Visibility` </br>
 
-<!-- Add feature importance output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="750"> </br> -->
+<img width="586" height="316" alt="image" src="https://github.com/user-attachments/assets/97dd8bee-3219-4e67-b73b-068bec74017a" /> </br>
 
 ## 7. Modeling </br>
 
 - Trained a Linear Regression model to predict `Item_Outlet_Sales`. </br>
 - Split the dataset into training and testing sets using `train_test_split`. </br>
 
-```python
-model = LinearRegression()
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.5,
-    shuffle=True
-)
-
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-```
-
 ## 8. Model Evaluation </br>
 
 - Evaluated the Linear Regression model using K-Fold Cross-Validation. </br>
 - Used Mean Squared Error (MSE) and R-Squared (R2) as evaluation metrics. </br>
 
-```python
-kf = KFold(n_splits=10, shuffle=True, random_state=1)
-
-scoring = {
-    'mse': make_scorer(mean_squared_error, greater_is_better=False),
-    'r2': make_scorer(r2_score)
-}
-
-scores = cross_validate(
-    model,
-    X_train,
-    y_train,
-    cv=kf,
-    scoring=scoring,
-    return_train_score=True
-)
-
-mse_scores = -scores['test_mse']
-r2_scores = scores['test_r2']
-
-print(f"Mean Squared Errors for each fold: {mse_scores}")
-print(f"Average Mean Squared Error: {mse_scores.mean()}")
-
-print(f"R2 Scores for each fold: {r2_scores}")
-print(f"Average R2 Score: {r2_scores.mean()}")
-```
-
 - Visualized the distribution of actual and predicted sales values using KDE plots. </br>
 
-```python
-plt.figure(figsize=(10, 5))
-ax1 = sns.kdeplot(y_test, label="Actual Sales")
-ax2 = sns.kdeplot(y_pred, label='Predicted Sales', ax=ax1)
-plt.legend()
-plt.show()
-```
+<img width="602" height="302" alt="image" src="https://github.com/user-attachments/assets/e0a3c41a-8f88-4f64-ab56-7e41f335085c" /> </br>
+<img width="613" height="197" alt="image" src="https://github.com/user-attachments/assets/fd20cf02-ceb0-4358-b418-8cddaa377f4f" /> </br>
 
-<!-- Add evaluation output image here if available -->
-<!-- <img src="YOUR_IMAGE_URL" width="850"> </br> -->
 
 ## 9. Learning Experience </br>
 
