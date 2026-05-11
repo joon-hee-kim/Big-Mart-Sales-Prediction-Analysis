@@ -4,7 +4,7 @@ This is the result of an outlet-level sales prediction project using the Big Mar
 
 ## Motivation
 
-Our team initiated this project to understand the end-to-end process of a data science project by predicting product sales at retail outlets. Using the Big Mart Sales Prediction dataset, we aimed to analyze how product-level and outlet-level features affect sales performance.
+Our team initiated this project to understand the end-to-end process of a data science project by predicting product sales at retail outlets. Using the Big Mart Sales Prediction dataset, we aimed to analyze how product-level and outlet-level features are related to sales performance.
 
 This project allowed us to apply a practical data science workflow, including data exploration, missing-value handling, categorical encoding, outlier detection, feature scaling, feature selection, model training, and model evaluation. Through this process, we gained hands-on experience in applying machine learning models to a structured real-world dataset.
 
@@ -143,7 +143,7 @@ This project allowed us to apply a practical data science workflow, including da
 
 - Used `RandomForestRegressor` to calculate feature importance. </br>
 
-- The top important features identified from Random Forest feature importance were: </br>
+- The top important features analyzed from Random Forest feature importance were: </br>
   - `Item_MRP` </br>
   - `Outlet_Type_Grocery Store` </br>
   - `Outlet_Type_Supermarket Type3` </br>
@@ -179,7 +179,7 @@ Through this project, we learned how to apply machine learning models to a real-
 
 ### Solutions </br>
 
-- Used OrdinalEncoder for `Outlet_Location_Type`. </br>
+- Used OrdinalEncoder for `Outlet_Location_Type` in the final preprocessing step. </br>
 - Used LabelEncoder for `Item_Type`. </br>
 - Used OneHotEncoder for `Outlet_Type`. </br>
 - Used K-Fold Cross-Validation with MSE and R2 to evaluate model performance. </br>
