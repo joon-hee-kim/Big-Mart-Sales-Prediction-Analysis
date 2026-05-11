@@ -116,10 +116,10 @@ This project allowed us to apply a practical data science workflow, including da
 - Applied Label Encoding to `Item_Type`. </br>
 - Applied Ordinal Encoding to `Outlet_Location_Type`. </br>
 
-#### Before Label / Ordinal Encoding </br>
+#### Before Encoding </br>
 <img width="594" height="272" alt="image" src="https://github.com/user-attachments/assets/c7ff3bfc-ba5e-42cd-af68-b87fd67e4259" /> </br>
 
-#### After Label / Ordinal Encoding </br>
+#### After Encoding </br>
 <img width="372" height="271" alt="image" src="https://github.com/user-attachments/assets/e4e717a5-3797-4402-8073-8775de1e15ee" /> </br>
 
 ### 5.2 Scaling </br>
