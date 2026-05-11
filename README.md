@@ -2,12 +2,6 @@
 
 This is the result of an outlet-level sales prediction project using the Big Mart Sales Prediction dataset and machine learning-based data science methods.
 
-## Notice! ##
-Go to the following site and download `Train.csv`, then run the code with it.  
-Please update the file path in the Python files according to your local environment.
-
-* [Big Mart Sales Prediction Dataset](https://www.kaggle.com/datasets/devashish0507/big-mart-sales-prediction) </br>
-
 ## Motivation
 
 Our team initiated this project to understand the end-to-end process of a data science project by predicting product sales at retail outlets. Using the Big Mart Sales Prediction dataset, we aimed to analyze how product-level and outlet-level features affect sales performance.
